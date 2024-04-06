@@ -14,7 +14,7 @@ QMapImage::QMapImage(QWidget *parent) :
     info.ys     = 0;
     info.z      = 250;
     info.w      = 4000;
-    info.h      = 4000.1;
+    info.h      = 4000;
     info.bLock  = false;
     info.mps    = 0.05;
 
