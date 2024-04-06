@@ -21,7 +21,7 @@ QMapImage::QMapImage(QWidget *parent) :
     ui->setupUi(this);
 
     // loading map
-    if (img.Load("../map/map2.pgm"))
+    if (img.Load("../map/map1.pgm"))
     {
         info.map= QImage(img.w,img.h,QImage::Format_Grayscale8);
         memmove(info.map.bits(),img.GetBuffer(),img.w*img.h);
