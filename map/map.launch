@@ -1,0 +1,18 @@
+<launch>
+	<!--arg-->
+	<arg name="path" default="$(env PWD)"/>
+	
+	<!-- TF -->
+	<node pkg="tf" type="static_transform_publisher" name="tf_odom" args="0 0 0 0 0 0 map odom 50" />
+	<node pkg="tf" type="static_transform_publisher" name="tf_laser" args="0 0 0.3 3.14 0 0 base_link laser_sensor_link 50" />
+	<node pkg="tf" type="static_transform_publisher" name="tf_foot" args="0 0 0 0 0 0 base_footprint base_link 50" /> 
+	
+	<!--rplidar-->
+	<include file="$(arg path)/../../src/rplidar_ros/launch/rplidar.launch"/>
+	
+	<!-- gmapping -->
+	<node pkg="gmapping" name="slam_gmapping" type="slam_gmapping" />
+
+	<!--rviz-->
+	<node pkg="rviz" name="rviz" type="rviz" args="-d $(arg path)/map/map.rviz" />		
+</launch>

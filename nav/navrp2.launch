@@ -1,0 +1,26 @@
+<launch>
+	<!--path-->
+	<arg name="path" default="$(env PWD)"/>
+	
+	<!-- TF -->
+	<node pkg="tf" type="static_transform_publisher" name="tf_laser" args="0 0 0.3 3.14 0 0 base_link laser_sensor_link 50" />
+	<node pkg="tf" type="static_transform_publisher" name="tf_foot" args="0 0 0 0 0 0 base_footprint base_link 50" /> 
+	
+	<!-- amcl -->
+	<include file="nav/amcl.launch"/>
+	
+	!--rplidar-->
+	<include file="$(arg path)/../../src/rplidar_ros/launch/rplidar.launch"/>
+	
+	<!--move_base-->
+	<include file="nav/move_base2.launch"/>
+	
+	<!--map-->
+	<arg name="map_file" default="$(arg path)/map/testmap.yaml"/>
+	<node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)">
+		 <param name="frame_id" value="map"/>
+	</node>
+		
+	<!--rviz-->
+	<node pkg="rviz" name="rviz" type="rviz" args="-d $(arg path)/nav/nav.rviz" />
+</launch>
