@@ -28,7 +28,6 @@ QMapImage::QMapImage(QWidget *parent) :
     }
     else
         info.map= QImage(info.w,info.h,QImage::Format_Grayscale8);
-
 }
 
 QMapImage::~QMapImage()
