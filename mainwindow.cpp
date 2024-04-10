@@ -25,16 +25,16 @@ MainWindow::MainWindow(int argc, char **argv,QWidget *parent)
     map.SetReceiver("map");
     map.Init(argc,argv,"peanut)",this);
 
-    pos.onReceive   = onROSPose;
-    pos.SetFPS(100);
-    pos.SetReceiver("odom");
-    pos.Init(argc,argv,"peanut_pos",this);
+//    pos.onReceive   = onROSPose;
+//    pos.SetFPS(100);
+//    pos.SetReceiver("odom");
+//    pos.Init(argc,argv,"peanut_pos",this);
 
     connect(ui->map, SIGNAL(onTarget(float,float)), this, SLOT(onTarget(float,float)));
 
-    tflisten.SetFPS(100);
-    tflisten.TF("map,odom,base_footprint");
-    tflisten.Init(argc,argv,"ddd","tfodom",this);
+//    tflisten.SetFPS(100);
+//    tflisten.TF("map,odom,base_footprint");
+//    tflisten.Init(argc,argv,"ddd","tfodom",this);
 }
 
 #include <tf2_ros/transform_listener.h>
@@ -180,38 +180,38 @@ void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
     }
 }
 
-void MainWindow::onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *pArg)
-{
-    MainWindow *pMF = (MainWindow*)pArg;
-    int w   = msg.info.width;
-    int h   = msg.info.height;
+//void MainWindow::onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *pArg)
+//{
+//    MainWindow *pMF = (MainWindow*)pArg;
+//    int w   = msg.info.width;
+//    int h   = msg.info.height;
 
-    int cx  = pMF->ui->map->info.lmap.width();
-    int cy  = pMF->ui->map->info.lmap.height();
+//    int cx  = pMF->ui->map->info.lmap.width();
+//    int cy  = pMF->ui->map->info.lmap.height();
 
-    if (cx!=w || cy!=h)
-        pMF->ui->map->info.lmap = QImage(w,h,QImage::Format_Grayscale8);
+//    if (cx!=w || cy!=h)
+//        pMF->ui->map->info.lmap = QImage(w,h,QImage::Format_Grayscale8);
 
-    // flpped image
-    BYTE* pt    = pMF->ui->map->info.lmap.bits();
-    pt  +=w*(h-1);
-    for (int i=0;i<h;i++)
-    {
-        memmove(pt,&msg.data[w*i],w);
-        pt-=w;
-    }
-    //memmove(pMF->ui->map->info.lmap.bits(),&msg.data[0], w*h);
+//    // flpped image
+//    BYTE* pt    = pMF->ui->map->info.lmap.bits();
+//    pt  +=w*(h-1);
+//    for (int i=0;i<h;i++)
+//    {
+//        memmove(pt,&msg.data[w*i],w);
+//        pt-=w;
+//    }
+//    //memmove(pMF->ui->map->info.lmap.bits(),&msg.data[0], w*h);
 
-    float x = msg.info.origin.position.x;
-    float y = msg.info.origin.position.y;
-    dhQuat q;
-    q.x     = msg.info.origin.orientation.x;
-    q.y     = msg.info.origin.orientation.y;
-    q.z     = msg.info.origin.orientation.z;
-    q.q     = msg.info.origin.orientation.w;
-    dhMat H(q);
-    dhVector rpy    = H.RPY();
-    pMF->ui->map->info.lo.Vector(x,y,DEG(rpy.z));
+//    float x = msg.info.origin.position.x;
+//    float y = msg.info.origin.position.y;
+//    dhQuat q;
+//    q.x     = msg.info.origin.orientation.x;
+//    q.y     = msg.info.origin.orientation.y;
+//    q.z     = msg.info.origin.orientation.z;
+//    q.q     = msg.info.origin.orientation.w;
+//    dhMat H(q);
+//    dhVector rpy    = H.RPY();
+//    pMF->ui->map->info.lo.Vector(x,y,DEG(rpy.z));
 
-    pMF->ui->map->update();
-}
+//    pMF->ui->map->update();
+//}
