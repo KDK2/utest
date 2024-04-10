@@ -69,7 +69,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btninit_clicked()
 {
-    ko.Init("/dev/ttyUSB1");
+    ko.Init("/dev/ttyUSB0");
 }
 
 void MainWindow::on_btnclose_clicked()
