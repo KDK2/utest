@@ -3,8 +3,8 @@
 	<arg name="path" default="$(env PWD)"/>
 	
 	<!-- TF -->
-	<node pkg="tf" type="static_transform_publisher" name="tf_laser" args="0 0 0.3 3.14 0 0 base_link laser_sensor_link 50" />
 	<node pkg="tf" type="static_transform_publisher" name="tf_foot" args="0 0 0 0 0 0 base_footprint base_link 50" /> 
+	<node pkg="tf" type="static_transform_publisher" name="tf_laser" args="0 0 0.3 3.14 0 0 base_link laser_sensor_link 50" />
 	
 	<!-- amcl
 	<include file="nav/amcl.launch"/>

@@ -25,16 +25,16 @@ MainWindow::MainWindow(int argc, char **argv,QWidget *parent)
     map.SetReceiver("map");
     map.Init(argc,argv,"peanut)",this);
 
-//    pos.onReceive   = onROSPose;
-//    pos.SetFPS(100);
-//    pos.SetReceiver("odom");
-//    pos.Init(argc,argv,"peanut_pos",this);
+    pos.onReceive   = onROSPose;
+    pos.SetFPS(100);
+    pos.SetReceiver("odom");
+    pos.Init(argc,argv,"peanut_pos",this);
 
     connect(ui->map, SIGNAL(onTarget(float,float)), this, SLOT(onTarget(float,float)));
 
-//    tflisten.SetFPS(100);
-//    tflisten.TF("map,odom,base_footprint");
-//    tflisten.Init(argc,argv,"ddd","tfodom",this);
+    tflisten.SetFPS(100);
+    tflisten.TF("map,odom,base_footprint");
+    tflisten.Init(argc,argv,"ddd","tfodom",this);
 }
 
 #include <tf2_ros/transform_listener.h>
