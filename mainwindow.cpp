@@ -167,6 +167,7 @@ void MainWindow::SetTarget(float x, float y, float d)
 using namespace nav_msgs;
 void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
 {
+    //when send odom to base_footprint by KeenOn
     if (msg.child_frame_id.compare("base_footprint")==0)
     {
         MainWindow *pMF = (MainWindow*)pArg;
@@ -176,7 +177,7 @@ void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
         dhVector rpy= h.RPY();
 
         pMF->ui->map->info.o.Vector(o.x,-o.y,DEG(-rpy.z));
-        pMF->update();
+        pMF->update();//call repaint
     }
 }
 
