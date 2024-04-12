@@ -9,9 +9,9 @@
 	<!-- amcl -->
 	<include file="nav/amcl.launch"/>
 	
-	<!--rplidar
+	<!--rplidar-->
 	<include file="$(arg path)/../../src/rplidar_ros/launch/rplidar.launch"/>
-	-->
+	
 	<!--move_base
 	<include file="costmap.launch"/>
 	-->
