@@ -90,6 +90,12 @@ public:
             float   r;  // radius of  wheel
         } geo;
 
+        struct
+        {
+            float   vel;
+            float   omega;
+        } speed;
+
         dhVector X,Xo;
         bool    bReady;
     } info;

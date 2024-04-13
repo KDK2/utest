@@ -256,7 +256,8 @@ void KeenOn::EstPose()
 
     info.Xo     = info.X;
     info.X      = info.Xo + dhVector(dx,dy,dq);
-
+    info.speed.vel=(wl+wr)/2.0;
+    info.speed.omega=(wr-wl)/(info.geo.d*2.0);
     //qDebug()<<info.X.x <<info.X.y <<DEG(info.X.z);
 }
 
@@ -368,12 +369,14 @@ void KeenOn::onROSSendODOM(void *pArg)
 
     // odom twist by difference of X-Xo
     dhVector d  = ko->info.X-ko->info.Xo;
-    odom.twist.twist.linear.x   = d.x;
-    odom.twist.twist.linear.y   = d.y;
+    float vel = ko->info.speed.vel;
+    float omega = ko->info.speed.omega;
+    odom.twist.twist.linear.x   = vel;
+    odom.twist.twist.linear.y   = 0;
     odom.twist.twist.linear.z   = 0;
     odom.twist.twist.angular.x  = 0;
     odom.twist.twist.angular.y  = 0;
-    odom.twist.twist.angular.z  = d.z;
+    odom.twist.twist.angular.z  = omega;
 
     ko->odom.Send(odom);
 }
