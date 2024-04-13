@@ -163,7 +163,7 @@ void MainWindow::SetTarget(float x, float y, float d)
     goal.target_pose.pose.orientation.z = q.z;
     goal.target_pose.pose.orientation.w = q.q;
 }
-
+#include <QDebug>
 using namespace nav_msgs;
 void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
 {
@@ -177,6 +177,7 @@ void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
         dhVector rpy= h.RPY();
 
         pMF->ui->map->info.o.Vector(o.x,-o.y,DEG(-rpy.z));
+        qDebug() << "onRosPose!! = "<<o.x<<", "<<o.y;
         pMF->update();//call repaint
     }
 }
