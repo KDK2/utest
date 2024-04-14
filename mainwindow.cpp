@@ -38,7 +38,7 @@ MainWindow::MainWindow(int argc, char **argv,QWidget *parent)
 
     hgRobot.SetFPS(100);
     hgRobot.TF("gmap","gbase_footprint");
-    hgRobot.Init(argc,argv,"peanut","tf_global",this, onRosGlobalPose);
+    hgRobot.Init(argc,argv,"pe","tf_global",this, onRosGlobalPose);
 }
 
 #include <tf2_ros/transform_listener.h>
