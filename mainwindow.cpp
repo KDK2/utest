@@ -35,6 +35,10 @@ MainWindow::MainWindow(int argc, char **argv,QWidget *parent)
     tflisten.SetFPS(100);
     tflisten.TF("map,odom,base_footprint");
     tflisten.Init(argc,argv,"ddd","tfodom",this);
+
+    hgRobot.SetFPS(100);
+    hgRobot.TF("gmap","gbase_footprint");
+    hgRobot.Init(argc,argv,"peanut","tf_global",this, onRosGlobalPose);
 }
 
 #include <tf2_ros/transform_listener.h>
@@ -177,9 +181,15 @@ void MainWindow::onROSPose(nav_msgs::Odometry &msg, void *pArg)
         dhVector rpy= h.RPY();
 
         pMF->ui->map->info.o.Vector(o.x,-o.y,DEG(-rpy.z));
-        qDebug() << "onRosPose!! = "<<o.x<<", "<<o.y;
         pMF->update();//call repaint
     }
+}
+
+void MainWindow::onRosGlobalPose(void *pArg)
+{
+    MainWindow* pMF = (MainWindow*)pArg;
+    dhMat h = pMF->tflisten.Get();
+    pMF->hgRobot.Send(h);
 }
 
 //void MainWindow::onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *pArg)

@@ -37,6 +37,9 @@ public:
     QRos<nav_msgs::OccupancyGrid> lmap;
     static void onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *);
 
+    //TF sender
+    QTF hgRobot; // from global map to global base_footprint
+    static void onRosGlobalPose(void*);
 
     void Save();
     void SaveMap(BYTE*,int w,int h, char *psz);
