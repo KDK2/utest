@@ -1,0 +1,15 @@
+digraph G {
+"gmap" -> "gbase_footprint"[label="Broadcaster: /peanut\nAverage rate: 50.200 Hz\nMost recent transform: 1713110106.505 ( 0.010 sec old)\nBuffer length: 4.980 sec\n"];
+"base_footprint" -> "base_link"[label="Broadcaster: /tf_foot\nAverage rate: 20.134 Hz\nMost recent transform: 1713110106.543 ( -0.028 sec old)\nBuffer length: 4.967 sec\n"];
+"odom" -> "base_footprint"[label="Broadcaster: /peanut\nAverage rate: 25.201 Hz\nMost recent transform: 1713110106.495 ( 0.020 sec old)\nBuffer length: 4.960 sec\n"];
+"base_link" -> "laser_sensor_link"[label="Broadcaster: /tf_laser\nAverage rate: 20.140 Hz\nMost recent transform: 1713110106.548 ( -0.033 sec old)\nBuffer length: 4.965 sec\n"];
+"map" -> "odom"[label="Broadcaster: /amcl\nAverage rate: 10.265 Hz\nMost recent transform: 1713110106.814 ( -0.299 sec old)\nBuffer length: 4.871 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1713110106.515"[ shape=plaintext ] ;
+ }->"gmap";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1713110106.515"[ shape=plaintext ] ;
+ }->"map";
+}
