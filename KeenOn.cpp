@@ -153,7 +153,7 @@ void KeenOn::Go(float v,float w)
     float wl = (v-info.geo.d*w/2)/info.geo.r;
     float wr = (v+info.geo.d*w/2)/info.geo.r;
 
-    float K=4;
+    float K=8;
     Move(wl*K,wr*K,1);
     //qDebug()<<wl<<wr;
 }
