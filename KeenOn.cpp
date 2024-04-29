@@ -337,7 +337,7 @@ using namespace geometry_msgs;
 void KeenOn::onROSReceiveVel(geometry_msgs::Twist &msg, void *pArg)
 {
     KeenOn *ko =(KeenOn*)pArg;
-    //qDebug()<<msg.linear.x << msg.angular.z;
+    qDebug()<<msg.linear.x << msg.angular.z;
     ko->Go(msg.linear.x,msg.angular.z);
 }
 
