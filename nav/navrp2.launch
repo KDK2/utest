@@ -12,7 +12,6 @@
 	<!--rplidar-->
 	<include file="$(arg path)/../../src/rplidar_ros/launch/rplidar.launch"/>
 	
-	
 	<!--map-->
 	<arg name="map_file" default="$(arg path)/map/map315.yaml"/>
 	<node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)">
