@@ -167,7 +167,7 @@ Visualization Manager:
       Draw Behind: false
       Enabled: true
       Name: Map
-      Topic: /move_base/global_costmap/costmap
+      Topic: /costmap_node/costmap/costmap
       Unreliable: false
       Use Timestamp: false
       Value: true
