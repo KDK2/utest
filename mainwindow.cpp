@@ -232,3 +232,13 @@ void MainWindow::onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *pArg)
 
     pMF->ui->map->update();
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    ko.m_bCmd=false;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ko.m_bCmd=true;
+}

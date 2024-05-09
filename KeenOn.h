@@ -107,6 +107,8 @@ public:
 
     // callback functions.
     static void onReceive(void *);
+
+    bool m_bCmd;
 };
 
 #endif // KEENON_H

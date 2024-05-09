@@ -19,6 +19,8 @@ KeenOn::KeenOn()
     info.bReady = FALSE;
     info.X.z    = RAD(0);
     info.Xo = info.X;
+
+    m_bCmd=true;
 }
 
 BOOL KeenOn::Init(char *pUART)
@@ -338,7 +340,10 @@ void KeenOn::onROSReceiveVel(geometry_msgs::Twist &msg, void *pArg)
 {
     KeenOn *ko =(KeenOn*)pArg;
     qDebug()<<msg.linear.x << msg.angular.z;
-    ko->Go(msg.linear.x,msg.angular.z);
+    if(ko->m_bCmd)
+        ko->Go(msg.linear.x,msg.angular.z);
+    else
+        return;
 }
 
 #include "3d/dhMat.h"
