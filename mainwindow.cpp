@@ -88,22 +88,22 @@ void MainWindow::on_btnclose_clicked()
 
 void MainWindow::on_btnforward_clicked()
 {
-    ko.Move(15,15,10000);
+    ko.Move(30,30,10000);
 }
 
 void MainWindow::on_btnbackward_clicked()
 {
-    ko.Move(-15,-15,10000);
+    ko.Move(-30,-30,10000);
 }
 
 void MainWindow::on_btnleft_clicked()
 {
-    ko.Move(-15,15,10000);
+    ko.Move(-30,30,10000);
 }
 
 void MainWindow::on_btnright_clicked()
 {
-    ko.Move(15,-15,10000);
+    ko.Move(30,-30,10000);
 }
 
 void MainWindow::on_btnstop_clicked()
