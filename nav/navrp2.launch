@@ -11,6 +11,7 @@
 	
 	<!--rplidar-->
 	<include file="$(arg path)/../../src/rplidar_ros/launch/rplidar.launch"/>
+	<include file="$(arg path)/../../src/path_publisher/launch/path_publisher.launch"/>
 	
 	<!--map-->
 	<arg name="map_file" default="$(arg path)/map/map315.yaml"/>
