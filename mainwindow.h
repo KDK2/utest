@@ -10,7 +10,7 @@ QT_END_NAMESPACE
 #include "KeenOn.h"
 #include <QTimer>
 #include "QRos.h"
-
+#include "std_msgs/Bool.h"
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -36,6 +36,9 @@ public:
     // Local map
     QRos<nav_msgs::OccupancyGrid> lmap;
     static void onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *);
+
+    QRos<std_msgs::Bool>  bout;    // out
+    static void onRosTest(void *);
 
     //TF sender
     QTF hgRobot; // from global map to global base_footprint

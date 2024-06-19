@@ -44,6 +44,11 @@ MainWindow::MainWindow(int argc, char **argv,QWidget *parent)
     hgRobot.SetFPS(100);
     hgRobot.TF("gmap","gbase_footprint");
     hgRobot.Init(argc,argv,"pe","tf_global",this, onRosGlobalPose);
+
+    bout.SetFPS(100);
+    bout.SetSender("cmd_bool");
+    bout.onLoop=onRosTest;
+    bout.Init(argc,argv,"cmb",this);
 }
 
 #include <tf2_ros/transform_listener.h>
@@ -231,6 +236,17 @@ void MainWindow::onROSLocalMap(nav_msgs::OccupancyGrid &msg, void *pArg)
     pMF->ui->map->info.lo.Vector(x,y,DEG(rpy.z));
 
     pMF->ui->map->update();
+}
+
+void MainWindow::onRosTest( void *pArg)
+{
+    MainWindow *pMF = (MainWindow*)pArg;
+    bool bRet=false;
+    bRet=pMF->ko.m_bCmd;
+
+    std_msgs::Bool b;
+    b.data=bRet;
+    pMF->bout.Send(b);
 }
 
 void MainWindow::on_pushButton_clicked()

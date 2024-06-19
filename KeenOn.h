@@ -5,6 +5,7 @@
 #include "QRos.h"
 #include "QTF2.h"
 #include "3d/dhVector.h"
+#include "std_msgs/Bool.h"
 
 #define MAX_CBUF    10000
 #define MAX(a,b)    ((a)>(b) ? (a):(b))
